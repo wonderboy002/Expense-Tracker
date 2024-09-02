@@ -1,12 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import ExpenseRouter from "./Routes/Expense.routes.js";
+import cors from "cors";
 
 const app = express();
-console.log(new Date());
+
 
 const port = 3001;
 app.use(express.json());
+app.use(cors());
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

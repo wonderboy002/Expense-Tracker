@@ -5,6 +5,7 @@ const ExpenseRouter = express.Router();
 ExpenseRouter.get("/getExpenses/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
+   
     const records = await ExpenseModel.find({ userId: userId });
     if (records.length === 0) {
       return res.status(404).send("No records found!!!");
@@ -19,6 +20,8 @@ ExpenseRouter.get("/getExpenses/:userId", async (req, res) => {
 ExpenseRouter.post("/", async (req, res) => {
   try {
     const record = req.body;
+    
+    
     const newrecord = new ExpenseModel(record);
     const savedRecord = await newrecord.save();
     if (!savedRecord){
